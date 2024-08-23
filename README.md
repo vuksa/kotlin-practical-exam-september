@@ -2,12 +2,11 @@
 This project provides a portal to access various information about countries, including life expectancy, government forms, and presidents.
 
 ### Contents
-- `CountryPortal.kt` 
 - `CountryApi.kt`
 - `CountryRunner.kt`
 - `models.kt`
 
-In `CountryApi.kt` and `CountryPortal.kt`, the following classes and interfaces are defined:
+In `CountryApi.kt` and `models.kt`, the following classes and interfaces are defined:
 - `President`: Represents a president. 
 - `Country`: Represents a country with various properties. 
 - `Continent`: Enum class for different continents. 
