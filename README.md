@@ -23,7 +23,7 @@ In models.kt, create the following entities:
   - `continent` (`Continent`) - Continent to which the country belongs.
   - `governmentForm` (`String`) - Form of government.
   - `lifeExpectancy` (`Double`) - Life expectancy in the country.
-  - `presidents` (`List<President>`) - List of presidents the country has had.
+  - `president` (`President`) - The president of the country.
 - `Continent`: Enum class representing different continents (e.g., ASIA, EUROPE, etc.).
 
 #### Task 2: Parse the entry CSV file countries.csv
@@ -51,7 +51,7 @@ Class `CountryPortal` should implement `CountryApi` interface.
 
 #### Task 3.2 Implement `CountryPortal.getTopNCountriesWithTheHighestLifeExpectancy` function
 ###### Points: 4
-`CountryPortal.getTopNCountriesWithTheHighestLifeExpectancy` function should return return top N
+`CountryPortal.getTopNCountriesWithTheHighestLifeExpectancy` function should return top N
 countries with the highest life expectancy.
 
 #### Verify Task 3.2 implementation by running bellow task.
@@ -82,7 +82,7 @@ provided government form and continent.
 #### Task 3.5 Implement `CountryPortal.getCountriesWithMostCommonGovernmentForm` function
 ###### Points: 8
 `CountryPortal.getCountriesWithMostCommonGovernmentForm` function should return a list of all countries with a 
-most common government form.
+most common government form sorted by name descending.
 
 #### Verify Task 3.5 implementation by running bellow task.
 ```shell
