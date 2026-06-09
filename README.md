@@ -1,100 +1,109 @@
 ## Country Information Portal
-This project provides a portal to access various information about countries, including life expectancy, government forms, and presidents.
+This assignment asks students to model country data, parse a CSV file, and implement a small query API over that data.
+
+### Setup
+- Use the Gradle wrapper that is committed to this repository.
+- The project is pinned to Gradle `9.5.1` and Kotlin `2.4.0`.
+- The build targets Java `21`.
+- If students work inside IntelliJ IDEA, the bundled JetBrains Runtime is enough to import the project and run Gradle tasks. No separate Gradle install is required.
+- For terminal use on macOS and Linux, run `sh ./run-gradle.cmd ...`.
+- For terminal use on Windows, run `.\run-gradle.cmd ...`.
+- The single `run-gradle.cmd` bootstrap reuses JDK `21` from `JAVA_HOME`, `PATH`, `~/.jdks`, `%USERPROFILE%\\.jdks`, or common system locations, and downloads the correct Amazon Corretto `21` archive for the current OS if needed.
+- Verify the environment with one of:
+
+```shell
+sh ./run-gradle.cmd compileKotlin
+```
+
+```powershell
+.\run-gradle.cmd compileKotlin
+```
+
+- The starter project intentionally contains placeholders and incomplete types, so `run-gradle ... test` is expected to fail until the assignment is implemented.
 
 ### Contents
 - `CountryApi.kt`
 - `CountryRunner.kt`
 - `models.kt`
 
-In `CountryApi.kt` and `models.kt`, the following classes and interfaces are defined:
-- `President`: Represents a president. 
-- `Country`: Represents a country with various properties. 
-- `Continent`: Enum class for different continents. 
-- `CountryApi`: Interface defining methods to retrieve information about countries.
+The following types are part of the assignment:
+- `President`: represents a president.
+- `Country`: represents a country with its related data.
+- `Continent`: enum class for continents.
+- `CountryApi`: interface defining the required queries.
 
 ### Tasks
 #### Task 1: Create Entity Classes
 ###### Total points: 10
-In models.kt, create the following entities:
-- `President`: Data class with the primary constructor property:
-    - `name` (`String`) - Name of the president.
-- `Country`: Data class with the primary constructor properties:
-  - `name` (`String`) - Name of the country.
-  - `continent` (`Continent`) - Continent to which the country belongs.
-  - `governmentForm` (`String`) - Form of government.
-  - `lifeExpectancy` (`Double`) - Life expectancy in the country.
-  - `president` (`President`) - The president of the country.
-- `Continent`: Enum class representing different continents (e.g., ASIA, EUROPE, etc.).
+In `models.kt`, create the following entities:
+- `President`: data class with the primary constructor property `name: String`.
+- `Country`: data class with the primary constructor properties:
+  - `name: String`
+  - `continent: Continent`
+  - `governmentForm: String`
+  - `lifeExpectancy: Double`
+  - `president: President`
+- `Continent`: enum class containing the required continent names (for example, `ASIA`, `EUROPE`, and so on).
 
-#### Task 2: Parse the entry CSV file countries.csv
+#### Task 2: Parse the input CSV file `countries.csv`
 ###### Total points: 10
-Implement the `CountryRunner.parseCountries` function to parse the entry CSV file [countries.csv](src/main/resources/countries.csv). As a result, 
-`CountryRunner.parseCountries` function should return the list of countries List<Countries> listed in CSV file with their 
-corresponding properties.
+Implement the top-level `parseCountries` function in `CountryRunner.kt` so it parses [countries.csv](src/main/resources/countries.csv) and returns `List<Country>`.
 
-Columns in the CSV file are split by a comma character (,).
+Columns in the CSV file are separated by a comma character (`,`).
 
-#### Task 3: Create class `CountryPortal` and implement functions of `CountryApi` interface.
+#### Task 3: Create `CountryPortal` and implement the `CountryApi` interface
 ###### Total points: 40
 
-##### ***Note***:
-Leverage Kotlin APIs on Collections such as `map`, `filter`,
-`flatmap`, `distinct`, `groupingBy`, `maxByOrNull`, `find`, etc. and functional approach to implement your solution.
-Implementing the solutions in an imperative way by not using these APIs(for example, using for loops) will be accepted,
-but it **will result in 2 points deduction penalty** per task.
+##### Note
+Prefer Kotlin collection APIs such as `map`, `filter`, `flatMap`, `distinct`, `groupingBy`, `maxByOrNull`, and `find`.
+Imperative solutions using loops are acceptable, but each such task receives a `2` point deduction.
 
 #### Task 3.1
 ###### Points: 4
-Create a class `CountryPortal` in the same package where `CountryRunner.kt` and `models.kt` files are defined.
-`CountryPortal` should have a primary constructor with a `countries: List<Country>` class property.
-Class `CountryPortal` should implement `CountryApi` interface.
+Create a `CountryPortal` class in the same package as `CountryRunner.kt` and `models.kt`.
+`CountryPortal` should have a primary constructor with a `countries: List<Country>` property and should implement `CountryApi`.
 
-#### Task 3.2 Implement `CountryPortal.getTopNCountriesWithTheHighestLifeExpectancy` function
+#### Task 3.2: Implement `CountryPortal.getTopNCountriesWithTheHighestLifeExpectancy`
 ###### Points: 4
-`CountryPortal.getTopNCountriesWithTheHighestLifeExpectancy` function should return top N
-countries with the highest life expectancy.
+Return the top `N` countries with the highest life expectancy.
 
-#### Verify Task 3.2 implementation by running bellow task.
+Verify Task 3.2 with:
 ```shell
-./gradlew :test --tests "CountryPortalTest.test - get top N countries with the highest life expectancy"
+./gradlew test --tests "CountryPortalTest.test - get top N countries with the highest life expectancy"
 ```
 
-#### Task 3.3 Implement `CountryPortal.getAllPresidents` function
+#### Task 3.3: Implement `CountryPortal.getAllPresidents`
 ###### Points: 8
-`CountryPortal.getAllPresidents` function should return a list of all presidents. Make sure that result list needs to
-contain each name only once. No duplicates should be present.
+Return a list of all presidents without duplicates.
 
-#### Verify Task 3.3 implementation by running bellow task.
+Verify Task 3.3 with:
 ```shell
-./gradlew :test --tests "CountryPortalTest.test - get all presidents"
+./gradlew test --tests "CountryPortalTest.test - get all presidents"
 ```
 
-#### Task 3.4 Implement `CountryPortal.getCountriesByGovernmentFormAndContinent` function
+#### Task 3.4: Implement `CountryPortal.getCountriesByGovernmentFormAndContinent`
 ###### Points: 8
-`CountryPortal.getCountriesByGovernmentFormAndContinent` function should return a list of all countries with a 
-provided government form and continent. 
+Return all countries with the provided government form and continent.
 
-#### Verify Task 3.4 implementation by running bellow task.
+Verify Task 3.4 with:
 ```shell
-./gradlew :test --tests "CountryPortalTest.test - get all countries by government form and continent"
+./gradlew test --tests "CountryPortalTest.test - get all countries by government form and continent"
 ```
 
-#### Task 3.5 Implement `CountryPortal.getCountriesWithMostCommonGovernmentForm` function
+#### Task 3.5: Implement `CountryPortal.getCountriesWithMostCommonGovernmentForm`
 ###### Points: 8
-`CountryPortal.getCountriesWithMostCommonGovernmentForm` function should return a list of all countries with a 
-most common government form sorted by name descending.
+Return all countries with the most common government form, sorted by name in descending order.
 
-#### Verify Task 3.5 implementation by running bellow task.
+Verify Task 3.5 with:
 ```shell
-./gradlew :test --tests "CountryPortalTest.test - get all countries with the most common government form"
+./gradlew test --tests "CountryPortalTest.test - get all countries with the most common government form"
 ```
 
-#### Task 3.6 Implement `CountryPortal.findMostCommonPresident` function
+#### Task 3.6: Implement `CountryPortal.findMostCommonPresident`
 ###### Points: 8
-`CountryPortal.findMostCommonPresident` function should return the name of the president who is the leader of the most 
-countries.
+Return the `President` who is the leader of the most countries.
 
-#### Verify Task 3.6 implementation by running bellow task.
+Verify Task 3.6 with:
 ```shell
-./gradlew :test --tests "CountryPortalTest.test - find most common president"
+./gradlew test --tests "CountryPortalTest.test - find most common president"
 ```
