@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Kotlin Logo</title>
+  <desc id="desc">Stylized geometric Kotlin mark.</desc>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#ffffff"/>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#10131a" opacity="0.04"/>
+  <polygon points="24,20 70,66 24,108" fill="#7f52ff"/>
+  <polygon points="24,20 108,20 70,66" fill="#ff4f8b"/>
+  <polygon points="24,108 108,108 70,66" fill="#ff8a2b"/>
+</svg>

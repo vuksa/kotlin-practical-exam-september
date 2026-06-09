@@ -40,5 +40,10 @@ bin/
 ### VS Code ###
 .vscode/
 
+### Slidev ###
+slidedev/node_modules/
+slidedev/dist/
+slidedev/.slidev/
+
 ### Mac OS ###
 .DS_Store

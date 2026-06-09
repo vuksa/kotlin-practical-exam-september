@@ -40,6 +40,7 @@ Usage:
 
 Creates a ZIP archive containing tracked and non-ignored project files.
 Ignored build output such as build/, .gradle/, out/, and similar files are excluded.
+The slidedev/ presentation directory is also excluded.
 
 The script asks for:
   - first name
@@ -120,7 +121,10 @@ main() {
     file_list_path="${temp_dir}/files.list"
 
     rm -f "${archive_path}"
-    git -C "${PROJECT_DIR}" ls-files -z --cached --others --exclude-standard > "${file_list_path}"
+    git -C "${PROJECT_DIR}" ls-files -z --cached --others --exclude-standard -- \
+        . \
+        ':(exclude)slidedev' \
+        ':(exclude)slidedev/**' > "${file_list_path}"
 
     if [ ! -s "${file_list_path}" ]; then
         die "No project files found to archive."
@@ -173,6 +177,7 @@ Usage:
 
 Creates a ZIP archive containing tracked and non-ignored project files.
 Ignored build output such as build/, .gradle/, out/, and similar files are excluded.
+The slidedev/ presentation directory is also excluded.
 
 The script asks for:
   - first name
@@ -250,7 +255,8 @@ try {
         Remove-Item -Path $archivePath -Force
     }
 
-    $files = (& git -C $ProjectDir ls-files --cached --others --exclude-standard) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+    $files = (& git -C $ProjectDir ls-files --cached --others --exclude-standard -- . ':(exclude)slidedev' ':(exclude)slidedev/**') |
+        Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
     if (-not $files -or $files.Count -eq 0) {
         Fail "No project files found to archive."
     }
