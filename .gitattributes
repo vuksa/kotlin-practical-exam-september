@@ -1,1 +1,2 @@
 run-gradle.cmd text=auto
+zip-project.cmd text=auto

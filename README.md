@@ -9,6 +9,7 @@ This assignment asks students to model country data, parse a CSV file, and imple
 - For terminal use on macOS and Linux, run `sh ./run-gradle.cmd ...`.
 - For terminal use on Windows, run `.\run-gradle.cmd ...`.
 - The single `run-gradle.cmd` bootstrap reuses JDK `21` from `JAVA_HOME`, `PATH`, `~/.jdks`, `%USERPROFILE%\\.jdks`, or common system locations, and downloads the correct Amazon Corretto `21` archive for the current OS if needed.
+- To create a ZIP for submission, run `sh ./zip-project.cmd` on macOS/Linux or `.\zip-project.cmd` on Windows. The script asks for first name, last name, and index number in the usual form such as `123/2026`, then creates a ZIP named `First_Last_123-2026.zip` with tracked plus non-ignored project files only.
 - Verify the environment with one of:
 
 ```shell
