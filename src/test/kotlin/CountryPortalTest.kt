@@ -55,10 +55,9 @@ class CountryPortalTest {
     @Test
     fun `test - get all countries with the most common government form`() {
         val actualCountries = countryPortalApi.getCountriesWithMostCommonGovernmentForm()
-            .sortedBy { it.name }
             .map { it.name }
 
-        val expectedCountries = ALL_REPUBLIC_COUNTRIES
+        val expectedCountries = ALL_REPUBLIC_COUNTRIES.sortedDescending()
 
         assertEquals(
             expectedCountries,
